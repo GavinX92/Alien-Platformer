@@ -26,9 +26,9 @@ GameObject:
   - component: {fileID: 114557838886976558}
   - component: {fileID: 114847981746790652}
   - component: {fileID: 114665664974446356}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4986028458438962}
   - component: {fileID: 212016324136679116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,8 +60,8 @@ GameObject:
   - component: {fileID: 50425292473487798}
   - component: {fileID: 61018773065752024}
   - component: {fileID: 114657897047000148}
-  m_Layer: 0
-  m_Name: Feet Collider
+  m_Layer: 8
+  m_Name: 'Feet '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,7 +126,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!50 &50822179722792628
 Rigidbody2D:
@@ -143,7 +143,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 70f4b7dc754054ec5aa66c326ff37c81, type: 2}
+  m_Material: {fileID: 6200000, guid: 550005643e4c14263a774c92f34e132c, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -160,7 +160,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.028531045}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -171,7 +171,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.47983438, y: 0.20606327}
+  m_Size: {x: 0.6620151, y: 0.13558769}
   m_EdgeRadius: 0
 --- !u!61 &61352104338445092
 BoxCollider2D:
@@ -349,7 +349,8 @@ MonoBehaviour:
   jumpForce: 5
   canWalkWhileJumping: 1
   reducedWalkSpeedWhileJumping: 1
-  jumpingWalkSpeed: 4
+  jumpingWalkSpeed: 1
+  recoverySpeed: 0.75
 --- !u!212 &212016324136679116
 SpriteRenderer:
   m_ObjectHideFlags: 1

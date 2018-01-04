@@ -13,6 +13,8 @@ public class Player : MonoBehaviour {
 	public bool canWalkWhileJumping=false;
 	public bool reducedWalkSpeedWhileJumping=false;
 	public float jumpingWalkSpeed=1;
+	public float recoverySpeed=3;
+
 
 	private float currentRunSpeed;
 	private bool playWalkAnimation=false;
@@ -23,6 +25,9 @@ public class Player : MonoBehaviour {
 	private Animator animator;
 	private SpriteRenderer spriteRenderer;
 	private PlayerSoundControler playerSoundControler;
+
+	private bool isRecovering;
+
 	// Use this for initialization
 	void Start () {
 		myRigidbody = GetComponent<Rigidbody2D> ();
@@ -69,7 +74,7 @@ public class Player : MonoBehaviour {
 			animator.SetBool ("isJumping",false);
 		}
 
-		if (running) {
+		if (running && !isRecovering) {
 			animator.speed = runAnimationSpeed;
 
 		} else {
@@ -190,6 +195,17 @@ public class Player : MonoBehaviour {
 	{
 
 		Debug.Log ("Player hurt");
+		isRecovering = true;
+		myRigidbody.velocity = new Vector2 (0, 0);
+		animator.SetBool ("isRecovering", true);
+		Invoke ("EndRecovery", recoverySpeed);
+
+	}
+
+	private void EndRecovery()
+	{
+		isRecovering = false;
+		animator.SetBool ("isRecovering", false);
 	}
 
 	public void setJumping(bool jumping)

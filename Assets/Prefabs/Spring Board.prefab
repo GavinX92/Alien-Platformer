@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 82847086956632568}
   - component: {fileID: 114490866197823978}
   - component: {fileID: 114071485228171314}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spring Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}

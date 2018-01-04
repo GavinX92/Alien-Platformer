@@ -9,19 +9,25 @@ public class Enemy : MonoBehaviour {
 	private int xDir;
 	private SpriteRenderer spriteRenderer;
 	private Player player;
+	private Animator animitor;
+	private bool isAlive = true;
 	// Use this for initialization
 	void Start () {
 
-		spriteRenderer = GetComponent<SpriteRenderer> ();
+		spriteRenderer = GetComponentInChildren<SpriteRenderer> ();
 		player = Transform.FindObjectOfType<Player> ();
+		animitor = GetComponent<Animator> ();
 		xDir = -1;
+
+	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		gameObject.transform.rotation = Quaternion.identity;
-
-		Move ();
+		if (isAlive) {
+			Move ();
+		}
 	}
 
 	private void Move()
@@ -50,18 +56,18 @@ public class Enemy : MonoBehaviour {
 	public void EnemyDamaged()
 	{
 		print ("Enemy dead");
+		isAlive = false;
 		GameObject damagePlayerCollider = transform.Find ("Damage Player Collider").gameObject;
 		damagePlayerCollider.GetComponent<BoxCollider2D> ().enabled = false;
-		Destroy (transform.parent.gameObject);
+		animitor.SetBool ("isDead", true);
 
 	}
 
-//	public void OnTriggerEnter2D(Collider2D collider) {
-//		Debug.Log ("Hit..");
-//		if (collider.gameObject.GetComponent<Player>()) {
-//			Debug.Log ("..player");
-//		}
-//
-//
-//	}
+
+	public void DestroyEnemy()
+	{
+
+		Destroy (transform.parent.gameObject);
+	}
+
 }
