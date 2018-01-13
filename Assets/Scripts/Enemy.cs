@@ -5,12 +5,14 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
 	public float speed =0.3f;
+	public bool isAlive = true;
 
 	private int xDir;
 	private SpriteRenderer spriteRenderer;
 	private Player player;
 	private Animator animitor;
-	private bool isAlive = true;
+
+	private AudioSource audioSource;
 	// Use this for initialization
 	void Start () {
 
@@ -18,7 +20,7 @@ public class Enemy : MonoBehaviour {
 		player = Transform.FindObjectOfType<Player> ();
 		animitor = GetComponent<Animator> ();
 		xDir = -1;
-
+		audioSource = GetComponent<AudioSource> ();
 	
 	}
 	
@@ -55,10 +57,14 @@ public class Enemy : MonoBehaviour {
 
 	public void EnemyDamaged()
 	{
+		if (!isAlive) {
+			return;
+		}
 		print ("Enemy dead");
 		isAlive = false;
-		GameObject damagePlayerCollider = transform.Find ("Damage Player Collider").gameObject;
-		damagePlayerCollider.GetComponent<BoxCollider2D> ().enabled = false;
+		//audioSource.Play ();
+	//	GameObject damagePlayerCollider = transform.Find ("Damage Player Collider").gameObject;
+	//	damagePlayerCollider.GetComponent<BoxCollider2D> ().enabled = false;
 		animitor.SetBool ("isDead", true);
 
 	}

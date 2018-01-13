@@ -331,6 +331,8 @@ MonoBehaviour:
   soundFXvolume: 1
   jumpSound: {fileID: 8300000, guid: 48253b540dc384aa6adfde5cc488e998, type: 3}
   jumpSoundVolume: 0.1
+  hurtSound: {fileID: 8300000, guid: 645e0c40677df4d2a92259f319acf706, type: 3}
+  hurtSoundVolume: 1
 --- !u!114 &114847981746790652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -350,6 +352,7 @@ MonoBehaviour:
   canWalkWhileJumping: 1
   reducedWalkSpeedWhileJumping: 1
   jumpingWalkSpeed: 1
+  isRecovering: 0
   recoverySpeed: 0.75
 --- !u!212 &212016324136679116
 SpriteRenderer:

@@ -13,10 +13,13 @@ public class BouncePlayerOnDeath : MonoBehaviour {
 
 	private bool playerBounced=false;//stops double bounce.
 	private Rigidbody2D playerRigidBody;
+
+	private AudioSource audioSource;
 	// Use this for initialization
 	void Start () {
 		Player	player = Transform.FindObjectOfType<Player> ();
 		playerRigidBody = player.GetComponent<Rigidbody2D> ();
+		audioSource = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -29,11 +32,13 @@ public class BouncePlayerOnDeath : MonoBehaviour {
 		if (playerBounced) {
 			return;
 		}
+
 		playerBounced = true; 
+		audioSource.Play ();
 		Vector2 newVelocity = playerRigidBody.velocity;
 		newVelocity.y =  bouncePlayerOnDeathPower;
 		playerRigidBody.velocity =newVelocity;
-		print ("player bounced " + bouncePlayerOnDeathPower);
+
 
 	}
 }

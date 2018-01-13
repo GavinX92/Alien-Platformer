@@ -200,9 +200,21 @@ public class Player : MonoBehaviour {
 
 		Debug.Log ("Player hurt");
 		isRecovering = true;
-		myRigidbody.velocity = new Vector2 (0, 0);
+		playerSoundControler.PlayHurtSound ();
+		damageKockback ();
+		//To Do: Slow movement while recovering.
 		animator.SetBool ("isRecovering", true);
 		Invoke ("EndRecovery", recoverySpeed);
+
+	}
+
+	private void damageKockback()
+	{
+		 float knockbackForce =-3; 
+		if (spriteRenderer.flipX) {
+			knockbackForce = -knockbackForce;
+		} 
+		myRigidbody.velocity = new Vector2 (knockbackForce, 0);
 
 	}
 
