@@ -58,14 +58,7 @@ public class SpringBoard : MonoBehaviour {
 	{
 		
 
-		//bool touching = playerFeetCollider.IsTouching (topCollider);
-		//print ("Launched Player "+touching.ToString());
 
-		//if (touching) {
-		//}	
-//		float x = playerRigidBody.velocity.x;
-//		float y = playerRigidBody.velocity.y + launchPower + playerDownwardMomentum;
-//		playerRigidBody.velocity = new Vector2(x,y);
 
 		myAudioSource.Play ();	
 		playerRigidBody.velocity += Vector2.up * launchPower;// +playerDownwardMomentum;

@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
 	public bool canWalkWhileJumping=false;
 	public bool reducedWalkSpeedWhileJumping=false;
 	public float jumpingWalkSpeed=1;
+	public bool isRecovering;	
 	public float recoverySpeed=3;
 
 
@@ -26,7 +27,7 @@ public class Player : MonoBehaviour {
 	private SpriteRenderer spriteRenderer;
 	private PlayerSoundControler playerSoundControler;
 
-	private bool isRecovering;
+
 
 	// Use this for initialization
 	void Start () {
@@ -193,6 +194,9 @@ public class Player : MonoBehaviour {
 
 	public void Damage()
 	{
+		if (isRecovering) {
+			return;
+		}
 
 		Debug.Log ("Player hurt");
 		isRecovering = true;

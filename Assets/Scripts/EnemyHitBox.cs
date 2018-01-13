@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemyHitBox : MonoBehaviour {
 
-
+	private Player player;
 	// Use this for initialization
 	void Start () {
-		
+		player = Transform.FindObjectOfType<Player> ();
 	}
 	
 	// Update is called once per frame
@@ -18,7 +18,7 @@ public class EnemyHitBox : MonoBehaviour {
 	public void OnTriggerEnter2D(Collider2D collider) {
 		//print ("triggerd by " + collider.gameObject.name);
 		FeetCollider feet = collider.gameObject.GetComponent<FeetCollider> ();
-		if (feet) {
+		if (feet && !player.isRecovering) {
 
 			transform.GetComponentInParent<Enemy> ().EnemyDamaged ();
 		}

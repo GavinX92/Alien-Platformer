@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 50372785832330960}
   - component: {fileID: 61920511352290446}
   - component: {fileID: 114994978705923488}
+  - component: {fileID: 58853296212768650}
   m_Layer: 0
   m_Name: Enemy Hit Box
   m_TagString: Untagged
@@ -289,6 +290,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &58853296212768650
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1807539100381834}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.030000001, y: 0.13419613}
+  serializedVersion: 2
+  m_Radius: 0.20906332
 --- !u!61 &61726870887922044
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -370,7 +386,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1807539100381834}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
