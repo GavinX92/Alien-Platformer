@@ -41,4 +41,10 @@ public class BouncePlayerOnDeath : MonoBehaviour {
 
 
 	}
+
+	public void setPlayerBounced(bool bounced)
+	{
+		playerBounced = bounced;
+
+	}
 }

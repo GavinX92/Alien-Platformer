@@ -6,7 +6,6 @@ public class Player : MonoBehaviour {
 
 
 	public float walkSpeed=2; 
-	public float runAcceleration=300;
 	public float maxRunSpeed=4;
 	public float runAnimationSpeed = 1.5f;
 	public float jumpForce =5;
@@ -14,10 +13,10 @@ public class Player : MonoBehaviour {
 	public bool reducedWalkSpeedWhileJumping=false;
 	public float jumpingWalkSpeed=1;
 	public bool isRecovering;	
-	public float recoverySpeed=3;
+	public float recoverySpeed=0.75f;
 
 
-	private float currentRunSpeed;
+
 	private bool playWalkAnimation=false;
 	private bool jumping=false;
 	private bool running =false;
@@ -52,12 +51,9 @@ public class Player : MonoBehaviour {
 		gameObject.transform.rotation = Quaternion.identity;
 
 		this.HandleAnimationState ();
+	
 		//possibly set to true by funtion call from playerControler script.
-
-
 		playWalkAnimation = false;
-
-
 	}
 
 
@@ -75,9 +71,9 @@ public class Player : MonoBehaviour {
 			animator.SetBool ("isJumping",false);
 		}
 
+
 		if (running && !isRecovering) {
 			animator.speed = runAnimationSpeed;
-
 		} else {
 			animator.speed = 1;
 		}
@@ -92,16 +88,13 @@ public class Player : MonoBehaviour {
 			return;
 		}
 
-
-
 			spriteRenderer.flipX = false;
 			playWalkAnimation = true;
 
-			
 		float speedToAdd = CalculateSpeedToAdd ();;
 
-			myRigidbody.velocity += Vector2.right * speedToAdd;
-
+		float y = myRigidbody.velocity.y;
+		myRigidbody.velocity = new Vector2(speedToAdd,y);
 
 	}
 
@@ -111,15 +104,12 @@ public class Player : MonoBehaviour {
 		if (jumping && !canWalkWhileJumping) {
 			return;
 		}
-
-
 			spriteRenderer.flipX = true;
 			playWalkAnimation = true;
 
-
 		float speedToAdd = CalculateSpeedToAdd ();;
-
-		myRigidbody.velocity += Vector2.left * speedToAdd;
+		float y = myRigidbody.velocity.y;
+		myRigidbody.velocity = new Vector2(-speedToAdd,y);
 
 	}
 
@@ -128,25 +118,18 @@ public class Player : MonoBehaviour {
 		float speedToAdd;
 
 		if (jumping && reducedWalkSpeedWhileJumping) {
-			speedToAdd = jumpingWalkSpeed - Mathf.Abs (myRigidbody.velocity.x);
+			speedToAdd = jumpingWalkSpeed;
 
 		} else if (jumping) {
-			speedToAdd = walkSpeed - Mathf.Abs (myRigidbody.velocity.x);
+			speedToAdd = walkSpeed;
 
 		} else if(running)
 		{
-
-			currentRunSpeed += runAcceleration * Time.deltaTime;
-
-			if (currentRunSpeed > maxRunSpeed) {
-				currentRunSpeed = maxRunSpeed;
-				//Debug.Log ("Max Run Speed reached");
-
-			}//end of max speed check
-			speedToAdd = currentRunSpeed - Mathf.Abs (myRigidbody.velocity.x);
+			speedToAdd = maxRunSpeed;
+		
 		}else{
 			
-			speedToAdd = walkSpeed - Mathf.Abs (myRigidbody.velocity.x);
+			speedToAdd = walkSpeed;
 		}//end of else
 
 		//speed should never be negative;
@@ -156,26 +139,15 @@ public class Player : MonoBehaviour {
 
 		return speedToAdd;
 	}
-
-
-
-
-
-
+		
 	public void StartRunning()
 	{
 		running = true;
-		this.currentRunSpeed = walkSpeed;
-		//this.maxRunSpeed += maxRunSpeed;
-		//this.runAcceleration += runAcceleration;
-
 	}
 
 	public void StopRunning()
 	{
 		running = false;
-		//this.maxRunSpeed = maxRunSpeed/2;
-		//this.runAcceleration = runAcceleration/2;
 	}
 
 	public void Jump()
@@ -183,13 +155,8 @@ public class Player : MonoBehaviour {
 		if (jumping) {
 			return;
 		}
-
-		//jumping = true;
 		playerSoundControler.PlayJumpSound ();
 		myRigidbody.velocity += Vector2.up * jumpForce;
-		//Debug.Log("Delta time = " + Time.deltaTime.ToString());
-		//Debug.Log ("Velocity after jump = " + myRigidbody.velocity.ToString ());
-
 	}
 
 	public void Damage()

@@ -313,8 +313,8 @@ Canvas:
   m_GameObject: {fileID: 150906525}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 538623824}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -893,6 +893,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114577991193477366, guid: a9902f1b7cc7048e78dc5e0a2d9471a5,
+        type: 2}
+      propertyPath: buttons.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4584360712073688, guid: a9902f1b7cc7048e78dc5e0a2d9471a5, type: 2}
       propertyPath: m_LocalPosition.x
       value: 185.6
@@ -925,6 +930,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114577991193477366, guid: a9902f1b7cc7048e78dc5e0a2d9471a5,
+        type: 2}
+      propertyPath: buttons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1652378818}
+    - target: {fileID: 114577991193477366, guid: a9902f1b7cc7048e78dc5e0a2d9471a5,
+        type: 2}
+      propertyPath: buttons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1875050558}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9902f1b7cc7048e78dc5e0a2d9471a5, type: 2}
   m_IsPrefabParent: 0
@@ -1072,6 +1087,7 @@ GameObject:
   - component: {fileID: 1652378817}
   - component: {fileID: 1652378816}
   - component: {fileID: 1652378818}
+  - component: {fileID: 1652378819}
   m_Layer: 5
   m_Name: Play Button
   m_TagString: Untagged
@@ -1189,6 +1205,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1652378819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652378814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf7ad7b4182ec440d89c73f7bb4e38e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1800171799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1370,6 +1397,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4271568491024098, guid: 831112de7ec6e4aaf84967a4a6d6e361, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271568491024098, guid: 831112de7ec6e4aaf84967a4a6d6e361, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -2.13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 831112de7ec6e4aaf84967a4a6d6e361, type: 2}
   m_IsPrefabParent: 0
@@ -1384,6 +1419,7 @@ GameObject:
   - component: {fileID: 1875050557}
   - component: {fileID: 1875050556}
   - component: {fileID: 1875050558}
+  - component: {fileID: 1875050559}
   m_Layer: 5
   m_Name: Options Button
   m_TagString: Untagged
@@ -1406,7 +1442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.2, y: -53.5}
+  m_AnchoredPosition: {x: 3.1999998, y: -53.5}
   m_SizeDelta: {x: 158, y: 38.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1875050556
@@ -1501,6 +1537,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1875050559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1875050554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf7ad7b4182ec440d89c73f7bb4e38e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1879287725
 Prefab:
   m_ObjectHideFlags: 0

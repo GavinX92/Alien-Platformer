@@ -17,7 +17,7 @@ public class EnemyDamagePlayerCollider : MonoBehaviour {
 		
 	}
 
-	public void OnTriggerEnter2D(Collider2D collider) {
+	public void OnTriggerStay2D(Collider2D collider) {
 
 		Player player = collider.gameObject.GetComponent<Player> ();
 		if (player && enemy.isAlive) {
