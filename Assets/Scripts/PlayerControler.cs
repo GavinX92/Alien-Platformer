@@ -21,28 +21,28 @@ public class PlayerControler : MonoBehaviour {
 
 
 
-		if (Input.GetKey (KeyCode.RightArrow) || Input.GetAxis("Left Joystick")>0) {
+		if (Input.GetKey (KeyCode.RightArrow) ){//|| Input.GetAxis("Left Joystick")>0) {
 
 			player.MoveRight ();
-		} else if (Input.GetKey (KeyCode.LeftArrow) || Input.GetAxis("Left Joystick")<0) {
+	} else if (Input.GetKey (KeyCode.LeftArrow) ){//|| Input.GetAxis("Left Joystick")<0) {
 
 			player.MoveLeft ();
 		} 
 
 
 
-		if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space) ||
-			Input.GetButtonDown("A Button")) {
+if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space) ){
+	//|| Input.GetButtonDown("A Button")) {
 
 			player.Jump ();
 
 		}
 
-		if (Input.GetKeyDown(KeyCode.Z)||Input.GetButtonDown ("X Button")) {
+		if (Input.GetKeyDown(KeyCode.Z)){//||Input.GetButtonDown ("X Button")) {
 			player.StartRunning();
 		}
 
-		if (Input.GetKeyUp(KeyCode.Z)||Input.GetButtonUp ("X Button")) {
+		if (Input.GetKeyUp(KeyCode.Z)){//||Input.GetButtonUp ("X Button")) {
 			player.StopRunning();
 		}
 
