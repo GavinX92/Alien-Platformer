@@ -14,10 +14,12 @@ public class OptionsManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-		musicPlayer = FindObjectOfType<MusicPlayer> ();
+//		Debug.Log ("Options managager start()");
+		musicPlayer = MusicPlayer.GetInstance();// FindObjectOfType<MusicPlayer> ();
 		musicVolumeSlider.value = PlayerPrefsManager.GetMusicVolume ();
 		soundFXvolumeSlider.value = PlayerPrefsManager.GetSoundFXvolume();
+
+
 	}
 	
 	// Update is called once per frame

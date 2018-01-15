@@ -21,7 +21,7 @@ public class SpringBoard : MonoBehaviour {
 		animator = gameObject.GetComponentInParent<Animator> ();
 
 		myAudioSource = GetComponent<AudioSource> ();
-
+		myAudioSource.volume = MusicPlayer.GetSoundFXvolume ();
 
 		Player	player = Transform.FindObjectOfType<Player> ();
 		playerRigidBody = player.GetComponent<Rigidbody2D> ();

@@ -23,9 +23,8 @@ public class ControlerUIManager : MonoBehaviour {
 		audioSource = GetComponent<AudioSource> ();
 
 		selectedIndex = 0;
-		//selectedButton = "Play";
-
-	
+		selectorIcon.transform.position = selctorIconPositions.transform.GetChild (selectedIndex).transform.position;
+		selectedButton = buttons [selectedIndex];
 	}
 	
 	// Update is called once per frame
@@ -37,8 +36,7 @@ public class ControlerUIManager : MonoBehaviour {
 			} else {
 				UpdateSelector ();
 			}
-
-			//selectedButton = "Play";
+				
 		} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
 			selectedIndex++;
 			if (selectedIndex > buttons.Length-1) {
@@ -48,19 +46,8 @@ public class ControlerUIManager : MonoBehaviour {
 			}
 		} else if (Input.GetKeyDown (KeyCode.Return)) {
 			selectedButton.onClick.Invoke ();
-			/*
-			audioSource.Play ();
-			if (selectedButton == "Play") {
-				levelManager.LoadLevel ("02_Level_01");
-
-			} else if (selectedButton == "Options") {
-				
-				levelManager.LoadLevel ("01b_Options");
-			}
-
-			*/
-
 		}
+
 
 	}
 
@@ -69,7 +56,10 @@ public class ControlerUIManager : MonoBehaviour {
 	{
 		selectorIcon.transform.position = selctorIconPositions.transform.GetChild (selectedIndex).transform.position;
 		selectedButton = buttons [selectedIndex];
+
+		audioSource.volume = MusicPlayer.GetSoundFXvolume ();
 		audioSource.Play ();
+
 	}
 
 	public void SetSelectedButton(Button mousedOverbutton)
@@ -86,5 +76,10 @@ public class ControlerUIManager : MonoBehaviour {
 		}
 
 		UpdateSelector ();
+	}
+		
+	public Button GetSelectedButton()
+	{
+		return selectedButton;
 	}
 }

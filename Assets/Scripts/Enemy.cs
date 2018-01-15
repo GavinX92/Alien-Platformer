@@ -9,19 +9,19 @@ public class Enemy : MonoBehaviour {
 
 	private int xDir;
 	private SpriteRenderer spriteRenderer;
-	private Player player;
-	private Animator animitor;
+	//private Player player;
+	private Animator animator;
 
 	private AudioSource audioSource;
 	// Use this for initialization
 	void Start () {
 
 		spriteRenderer = GetComponentInChildren<SpriteRenderer> ();
-		player = Transform.FindObjectOfType<Player> ();
-		animitor = GetComponent<Animator> ();
-		xDir = -1;
+	//	player = Transform.FindObjectOfType<Player> ();
+		animator = GetComponent<Animator> ();
 		audioSource = GetComponent<AudioSource> ();
-	
+		audioSource.volume = MusicPlayer.GetSoundFXvolume ();
+		xDir = -1;
 	}
 	
 	// Update is called once per frame
@@ -62,10 +62,7 @@ public class Enemy : MonoBehaviour {
 		}
 		print ("Enemy dead");
 		isAlive = false;
-		//audioSource.Play ();
-	//	GameObject damagePlayerCollider = transform.Find ("Damage Player Collider").gameObject;
-	//	damagePlayerCollider.GetComponent<BoxCollider2D> ().enabled = false;
-		animitor.SetBool ("isDead", true);
+		animator.SetBool ("isDead", true);
 
 	}
 

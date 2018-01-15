@@ -50,4 +50,11 @@ public class MusicPlayer : MonoBehaviour {
 
 		return soundFXvolume;
 	}
+
+
+	public static MusicPlayer GetInstance()
+	{
+
+		return instance;
+	}
 }

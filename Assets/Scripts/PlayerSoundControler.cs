@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSoundControler : MonoBehaviour {
 
-	public float soundFXvolume =1; // will be set in options menu.
+
 
 	public AudioClip jumpSound;
 	public float jumpSoundVolume = 0.5f;
@@ -27,7 +27,7 @@ public class PlayerSoundControler : MonoBehaviour {
 
 	public void PlayJumpSound()
 	{
-		float volume = jumpSoundVolume * soundFXvolume;
+		float volume = jumpSoundVolume * MusicPlayer.GetSoundFXvolume();
 		audioSource.clip = jumpSound;
 		audioSource.volume =volume;
 		audioSource.Play ();
@@ -35,7 +35,7 @@ public class PlayerSoundControler : MonoBehaviour {
 
 	public void PlayHurtSound()
 	{
-		float volume = hurtSoundVolume * soundFXvolume;
+		float volume = hurtSoundVolume * MusicPlayer.GetSoundFXvolume();
 		audioSource.clip = hurtSound;
 		audioSource.volume =volume;
 		audioSource.Play ();
