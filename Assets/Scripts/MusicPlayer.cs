@@ -16,6 +16,7 @@ public class MusicPlayer : MonoBehaviour {
 	{
 		if (instance == null) {
 			instance = this;
+			soundFXvolume = PlayerPrefsManager.GetSoundFXvolume ();
 		} else {
 			GameObject.Destroy (gameObject);
 		}

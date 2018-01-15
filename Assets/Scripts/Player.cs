@@ -25,7 +25,7 @@ public class Player : MonoBehaviour {
 	private Animator animator;
 	private SpriteRenderer spriteRenderer;
 	private PlayerSoundControler playerSoundControler;
-
+	private PlayerHealth playerHealth;
 
 
 	// Use this for initialization
@@ -43,6 +43,8 @@ public class Player : MonoBehaviour {
 
 		playerSoundControler = GetComponent<PlayerSoundControler> ();
 		if (!playerSoundControler) {Debug.LogError ("Can't find player sound controler");}
+
+		playerHealth = Transform.FindObjectOfType<PlayerHealth> ();
 	}
 
 	
@@ -166,12 +168,20 @@ public class Player : MonoBehaviour {
 		}
 
 		Debug.Log ("Player hurt");
+
+		playerHealth.TakeDamage ();
 		isRecovering = true;
 		playerSoundControler.PlayHurtSound ();
 		damageKockback ();
 		//To Do: Slow movement while recovering.
 		animator.SetBool ("isRecovering", true);
 		Invoke ("EndRecovery", recoverySpeed);
+
+	}
+
+	public void Kill()
+	{
+		playerHealth.SetHealth (0);
 
 	}
 

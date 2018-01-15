@@ -31,6 +31,15 @@ public class Enemy : MonoBehaviour {
 			Move ();
 		}
 	}
+	public void OnCollisionEnter2D(Collision2D collision) {
+
+		if (collision.collider.gameObject.GetComponent<Enemy> ()) {
+			ChangeDirection ();
+		}
+
+		print ("collision");
+
+	}
 
 	private void Move()
 	{

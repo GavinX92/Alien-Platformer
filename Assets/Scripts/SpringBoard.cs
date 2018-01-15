@@ -13,7 +13,7 @@ public class SpringBoard : MonoBehaviour {
 	private Rigidbody2D playerRigidBody;
 
 
-	//private float playerDownwardMomentum;
+
 
 	private static bool triggered=false; //stops double trigger from bounce. //static stops mutiple springs triggering at once.
 	// Use this for initialization
@@ -29,7 +29,7 @@ public class SpringBoard : MonoBehaviour {
 		GameObject playerFeet = GameObject.FindObjectOfType<FeetCollider> ().gameObject;
 
 
-
+		triggered = false;//resets to false in case was true on player death.
 	}
 	
 	// Update is called once per frame
@@ -56,10 +56,6 @@ public class SpringBoard : MonoBehaviour {
 
 	public void LaunchPlayer()
 	{
-		
-
-
-
 		myAudioSource.Play ();	
 		playerRigidBody.velocity += Vector2.up * launchPower;// +playerDownwardMomentum;
 		Invoke("ResetTrigger",0.5f);
