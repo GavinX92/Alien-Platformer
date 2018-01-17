@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour {
 	private Animator animator;
 
 	private AudioSource audioSource;
+
+
+	private Vector2 startPosition;
 	// Use this for initialization
 	void Start () {
 
@@ -21,7 +24,11 @@ public class Enemy : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 		audioSource = GetComponent<AudioSource> ();
 		audioSource.volume = MusicPlayer.GetSoundFXvolume ();
+		startPosition = transform.position;
 		xDir = -1;
+
+
+
 	}
 	
 	// Update is called once per frame
@@ -37,7 +44,7 @@ public class Enemy : MonoBehaviour {
 			ChangeDirection ();
 		}
 
-		print ("collision");
+//		print ("collision");
 
 	}
 
@@ -70,8 +77,8 @@ public class Enemy : MonoBehaviour {
 			return;
 		}
 		print ("Enemy dead");
-		isAlive = false;
-		animator.SetBool ("isDead", true);
+		this.SetIsAlive (false);
+
 
 	}
 
@@ -79,7 +86,39 @@ public class Enemy : MonoBehaviour {
 	public void DestroyEnemy()
 	{
 
-		Destroy (transform.parent.gameObject);
+		//transform.parent.gameObject.SetActive (false);
+		gameObject.SetActive(false);
+	}
+	public void SetIsAlive(bool isAlive)
+	{
+		this.isAlive = isAlive;
+
+
+		animator.SetBool ("isDead", !isAlive);
+
+
+	}
+	public void RespawnEnemy()
+	{
+		this.SetIsAlive (true);//resets snail animator;
+		transform.position = startPosition;
+
+		// change if enemies ever start out facing right.
+		xDir = -1;
+		spriteRenderer.flipX = false;
+	}
+
+
+	public static void RespawnEnemies()
+	{
+		Enemy[] enemies = Transform.FindObjectsOfType<Enemy> ();
+		print ("Enemy count = " + enemies.Length);
+		foreach (Enemy enemy in enemies) {
+
+			enemy.RespawnEnemy ();
+		}
+
+
 	}
 
 }

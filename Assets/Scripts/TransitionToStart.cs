@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TransitionToStart : MonoBehaviour {
 
-	public LevelManager levelManager;
+
 	public float transitionTime = 10;
 	// Use this for initialization
 	void Start () {
@@ -15,6 +15,6 @@ public class TransitionToStart : MonoBehaviour {
 	
 	private void ToStart(){
 
-		levelManager.LoadLevel (LevelManager.START_MENU_NAME);
+		LevelManager.LoadLevel (LevelManager.START_MENU_NAME);
 	}
 }

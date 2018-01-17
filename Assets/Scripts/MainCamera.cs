@@ -17,6 +17,7 @@ public class MainCamera : MonoBehaviour {
 
 	private Camera cameraComponent;
 	private	GameObject player;
+	private bool isFollowingPlayer=true;
 	//Vector3 offset;
 	// Use this for initialization
 	void Start () {
@@ -29,8 +30,9 @@ public class MainCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//this.transform.position = player.transform.position - offset;
-		//print("player x = " +player.transform.position.x.ToString());
+		if (!isFollowingPlayer) {
+			return;
+		}
 		float playerX =player.transform.position.x ;
 		float rightLineX =this.transform.position.x + horizontalMoveLine;
 		float leftLineX = this.transform.position.x - horizontalMoveLine;
@@ -104,5 +106,13 @@ public class MainCamera : MonoBehaviour {
 			float z = this.transform.position.z;
 			this.transform.position = new Vector3 (x, y, z);
 		}
+	}
+
+
+	public void SetIsFollowingPlayer(bool isFollowingPlayer)
+	{
+		this.isFollowingPlayer = isFollowingPlayer;
+
+
 	}
 }

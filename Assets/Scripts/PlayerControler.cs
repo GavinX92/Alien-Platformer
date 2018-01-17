@@ -7,7 +7,7 @@ public class PlayerControler : MonoBehaviour {
 
 
 
-
+	private bool isAcceptingInput=true;
 	private Player player;
 	// Use this for initialization
 	void Start () {
@@ -19,7 +19,10 @@ public class PlayerControler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (!isAcceptingInput) {
 
+			return;
+		}
 
 		if (Input.GetKey (KeyCode.RightArrow) ){//|| Input.GetAxis("Left Joystick")>0) {
 
@@ -49,5 +52,10 @@ if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space) ){
 
 	}//end of update()
 
+	public void SetISAcceptingInput(bool isAcceptingInput)
+	{
 
+		this.isAcceptingInput = isAcceptingInput;
+
+	}
 }

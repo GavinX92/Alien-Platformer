@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class OptionsManager : MonoBehaviour {
 
-	public LevelManager levelManager;
+	//public LevelManager levelManager;
 	public Slider musicVolumeSlider;
 	public Slider soundFXvolumeSlider;
 
@@ -19,6 +19,8 @@ public class OptionsManager : MonoBehaviour {
 		musicVolumeSlider.value = PlayerPrefsManager.GetMusicVolume ();
 		soundFXvolumeSlider.value = PlayerPrefsManager.GetSoundFXvolume();
 
+		PlayerControler playerControler = Transform.FindObjectOfType<PlayerControler> ();
+		playerControler.SetISAcceptingInput (false);
 
 	}
 	
@@ -35,7 +37,7 @@ public class OptionsManager : MonoBehaviour {
 
 		PlayerPrefsManager.SetMusicVolume (musicVolumeSlider.value);
 		PlayerPrefsManager.SetSoundFXvolume (soundFXvolumeSlider.value);
-		levelManager.LoadLevel (LevelManager.START_MENU_NAME);
+		LevelManager.LoadLevel (LevelManager.START_MENU_NAME);
 	}
 
 

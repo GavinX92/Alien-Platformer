@@ -13,10 +13,15 @@ public class PlayerHealth : MonoBehaviour {
 	private int currentHealth=3;
 
 	private Image[] heartImages; 
+
+	private PlayerLives playerLives;
+
+
 	// Use this for initialization
 	void Start () {
 		
 		heartImages = GetComponentsInChildren<Image> ();
+		playerLives = Transform.FindObjectOfType<PlayerLives> ();
 
 	}
 	
@@ -61,12 +66,14 @@ public class PlayerHealth : MonoBehaviour {
 	{
 		if (currentHealth == 0) {
 			Debug.Log ("Player Dead");
-			//levelManager.LoadLevel (LevelManager.LOSE_SCREEN_NAME);
-			LevelManager.LoadLevelStatic (LevelManager.LOSE_SCREEN_NAME);
+			playerLives.LoseLife ();
+
 		}
 
 
 	}
+
+
 
 
 }

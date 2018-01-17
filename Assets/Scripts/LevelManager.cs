@@ -10,17 +10,12 @@ public class LevelManager : MonoBehaviour {
 	public const string LOSE_SCREEN_NAME = "03b Lose Screen";
 
 
-	//TO Do: Remove in favor of static.
-	public void LoadLevel(string name){
+	
+	public void LoadLevelOnButtonPress(string name){
 		Debug.Log ("New Level load: " + name);
 		SceneManager.LoadScene(name);
 	}
 
-	public void LoadNextLevel()
-	{
-
-		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
-	}
 
 	public void QuitRequest(){
 		Debug.Log ("Quit requested");
@@ -28,9 +23,14 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
-	public static void LoadLevelStatic(string name){
+	public static void LoadLevel(string name){
 		Debug.Log ("New Level load: " + name);
 		SceneManager.LoadScene(name);
 	}
 
+	public static void LoadNextLevel()
+	{
+
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+	}
 }

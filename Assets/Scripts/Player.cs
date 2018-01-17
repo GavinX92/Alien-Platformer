@@ -205,6 +205,8 @@ public class Player : MonoBehaviour {
 	{
 
 		this.jumping=jumping;
+
+
 	}
 
 	public bool IsJumping()
