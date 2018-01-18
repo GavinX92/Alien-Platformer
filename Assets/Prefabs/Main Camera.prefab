@@ -37,8 +37,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1108116844397446}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.11, y: 2.68, z: -1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.53, y: 2.8, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,7 +53,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.000108131695, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -102,12 +102,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1108116844397446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f78cfd5b717fe418b9746c91825cf9f3, type: 3}
+  m_Script: {fileID: 11500000, guid: d644e091d703149978f15760ccb1a83f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalMoveLine: 0.5
-  topMoveLine: 0
-  bottomMoveLine: 0
+  topMoveLine: 1
+  bottomMoveLine: 1
+  CameraMinBottomLineObj: {fileID: 0}
+  CameraMinLefLineObj: {fileID: 0}
 --- !u!124 &124188029321370150
 Behaviour:
   m_ObjectHideFlags: 1

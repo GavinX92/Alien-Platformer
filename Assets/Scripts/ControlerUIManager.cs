@@ -4,7 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ControlerUIManager : MonoBehaviour {
-	public LevelManager levelManager;
+
+
+	/*
+	 * Handles which UI button is selected, and converts keyboard/controler input into UI calls.
+	 */
 
 	public Button[] buttons;
 
@@ -12,8 +16,6 @@ public class ControlerUIManager : MonoBehaviour {
 	private GameObject selctorIconPositions;
 	private Button selectedButton;
 	private AudioSource audioSource;
-
-
 	private int selectedIndex;
 	// Use this for initialization
 	void Start () {
@@ -50,8 +52,7 @@ public class ControlerUIManager : MonoBehaviour {
 
 
 	}
-
-
+		
 	private void UpdateSelector()
 	{
 		selectorIcon.transform.position = selctorIconPositions.transform.GetChild (selectedIndex).transform.position;

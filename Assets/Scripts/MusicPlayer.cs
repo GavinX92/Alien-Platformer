@@ -28,10 +28,6 @@ public class MusicPlayer : MonoBehaviour {
 		audioSource = GetComponent<AudioSource> ();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 
 	public void ChangeVolume(float volume)

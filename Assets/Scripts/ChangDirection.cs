@@ -11,6 +11,8 @@ public class ChangDirection : MonoBehaviour {
 	private bool triggerd=false;
 	// Use this for initialization
 	void Start () {
+
+		//get enemy sybling
 		foreach (Transform child in transform.parent) 
 		{
 			if (child.gameObject.GetComponent<Enemy> ()) {
@@ -18,11 +20,6 @@ public class ChangDirection : MonoBehaviour {
 			}
 		}
 
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
 
 	}
 
@@ -36,8 +33,6 @@ public class ChangDirection : MonoBehaviour {
 		if (collidingEnemy != enemy) {
 			return;
 		}
-
-
 		triggerd = true;
 		enemy.ChangeDirection ();
 

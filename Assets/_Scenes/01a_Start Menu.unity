@@ -1752,7 +1752,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Kenny The Alian
+  m_Text: Kenny The Alien
 --- !u!222 &1993291314
 CanvasRenderer:
   m_ObjectHideFlags: 0

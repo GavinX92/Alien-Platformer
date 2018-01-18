@@ -38,6 +38,7 @@ public class PlayerLives : MonoBehaviour {
 	public void LoseLife()
 	{
 		lives--;
+
 		UpdateLivesDigits();
 		CheckForGameOver ();
 	}
@@ -45,7 +46,9 @@ public class PlayerLives : MonoBehaviour {
 
 	private void UpdateLivesDigits()
 	{
-
+		if (lives < 0) {
+			return;
+		}
 		if (lives < 10) {
 			rightDigit.enabled = false;
 			leftDigit.sprite = digits [lives];
