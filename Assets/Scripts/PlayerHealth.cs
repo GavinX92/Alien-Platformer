@@ -13,9 +13,9 @@ public class PlayerHealth : MonoBehaviour {
 	private int currentHealth=3;
 
 	private Image[] heartImages; 
-
 	private PlayerLives playerLives;
 
+	private AudioSource audioSource;
 
 	// Use this for initialization
 	void Start () {
@@ -23,12 +23,14 @@ public class PlayerHealth : MonoBehaviour {
 		heartImages = GetComponentsInChildren<Image> ();
 		playerLives = Transform.FindObjectOfType<PlayerLives> ();
 
+		audioSource = GetComponent<AudioSource> ();
+		audioSource.volume = MusicPlayer.GetSoundFXvolume ();
+
+	   currentHealth=2;
+		UpdateHeartImages ();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 
 	public void SetHealth(int health)
 	{
@@ -45,6 +47,18 @@ public class PlayerHealth : MonoBehaviour {
 		UpdateHeartImages ();
 
 		CheckForDeath ();
+
+	}
+
+	public void GainHeart()
+	{
+		currentHealth++;
+		if (currentHealth > maxHealth) {
+			currentHealth = maxHealth;
+		}
+		UpdateHeartImages ();
+
+		audioSource.Play ();
 
 	}
 
