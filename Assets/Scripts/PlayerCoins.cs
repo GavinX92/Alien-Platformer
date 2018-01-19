@@ -8,13 +8,14 @@ public class PlayerCoins : MonoBehaviour {
 
 	public Sprite[] digits;
 
+
+	private static int coinCount=0;//static to keep value on new level/respawn.
+
 	private SpriteRenderer tens;
 	private SpriteRenderer ones;
-
-	private static int coinCount=97;//static to keep value on new level/respawn.
 	private AudioSource audioSource;
-
 	private PlayerLives playerLives;
+
 	// Use this for initialization
 	void Start () {
 		 tens = gameObject.transform.GetChild (2).gameObject.GetComponent<SpriteRenderer> ();

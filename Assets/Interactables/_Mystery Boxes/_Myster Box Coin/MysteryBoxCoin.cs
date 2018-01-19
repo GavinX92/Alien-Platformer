@@ -12,19 +12,18 @@ public class MysteryBoxCoin : MonoBehaviour {
 	private PlayerCoins playerCoins;
 
 
-	//private bool triggered=false;
+	private BoxEnemyBouncer boxEnemyBouncer;
 	// Use this for initialization
 	void Start () {
 		playerCoins = Transform.FindObjectOfType<PlayerCoins> ();
 		animator = GetComponent<Animator> ();
+
+		boxEnemyBouncer = GetComponentInChildren<BoxEnemyBouncer> ();
 	}
 
 	public void OnTriggerEnter2D(Collider2D collider)
 	{
-//		if (triggered) {
-//			return;
-//		}
-//		triggered=true;
+
 
 		print ("triggered");
 		if (collider.gameObject.GetComponent<Player> ()) {
@@ -34,10 +33,10 @@ public class MysteryBoxCoin : MonoBehaviour {
 				animator.SetTrigger ("last hit trigger");
 			} else {
 				animator.SetTrigger ("hit trigger");
-				//animator.SetBool("hit bool",true);
-			}
 
-		//	Invoke ("ResetTrigger", 0.5f);
+			}
+			boxEnemyBouncer.KillEnemy ();
+		
 		}
 	}
 

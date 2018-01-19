@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class HeartMysteryBox : MonoBehaviour {
 
-	public GameObject heartPrefab;
+
 
 
 	private Animator animator;
+	private BoxEnemyBouncer boxEnemyBouncer;
 
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator> ();
+		boxEnemyBouncer = GetComponentInChildren<BoxEnemyBouncer> ();
 	}
 	public void OnTriggerEnter2D(Collider2D collider)
 	{
 
-		animator.SetTrigger ("hit trigger");
+		if (collider.gameObject.GetComponent<Player> ()) {
+			animator.SetTrigger ("hit trigger");
+			boxEnemyBouncer.KillEnemy ();
+
+		}
 	}
 
 
@@ -26,13 +32,5 @@ public class HeartMysteryBox : MonoBehaviour {
 		Transform.FindObjectOfType<PlayerHealth>().GainHeart();
 	}
 
-//	public void CreateHeart()
-//	{
-//
-//		GameObject heart = Instantiate (heartPrefab) as GameObject;
-//		Vector2 heartPosition = gameObject.transform.position;
-//		heartPosition.y += 10;
-//		heart.transform.position = heartPosition;
-//	}
 
 }

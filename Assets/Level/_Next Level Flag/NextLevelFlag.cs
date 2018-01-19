@@ -36,7 +36,11 @@ public class NextLevelFlag : MonoBehaviour {
 		if (collider.gameObject.GetComponent<Player> ()) {
 			triggered = true;
 			playerControler.SetISAcceptingInput (false);
-			playerCamera.SetIsFollowingPlayer (false);
+
+			if (playerCamera) {
+				playerCamera.SetIsFollowingPlayer (false);
+			}
+
 			animator.SetBool ("isFlapping", true);
 			audioSource.Play ();
 

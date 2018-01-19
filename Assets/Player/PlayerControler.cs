@@ -6,6 +6,7 @@ public class PlayerControler : MonoBehaviour {
 
 
 
+	public bool disableUpArrowJump =false;
 
 	private bool isAcceptingInput=true;
 	private Player player;
@@ -34,7 +35,7 @@ public class PlayerControler : MonoBehaviour {
 
 
 
-if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space) ){
+		if ((Input.GetKeyDown (KeyCode.UpArrow) && !disableUpArrowJump )|| Input.GetKeyDown(KeyCode.Space)){
 	//|| Input.GetButtonDown("A Button")) {
 
 			player.Jump ();
