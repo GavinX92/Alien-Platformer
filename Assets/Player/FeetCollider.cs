@@ -44,6 +44,11 @@ public class FeetCollider : MonoBehaviour {
 			player.setJumping (false);
 		}
 			
+
+		if(collider.gameObject.GetComponent<MovingPlatform>()){
+			player.transform.parent=collider.gameObject.transform ; 
+
+			}
 	}
 
 	public void OnTriggerExit2D(Collider2D collider) {
@@ -54,6 +59,11 @@ public class FeetCollider : MonoBehaviour {
 
 		if (collider.gameObject.GetComponent<JumpableSurface> ()) {
 			player.setJumping (true);
+		}
+
+		if(collider.gameObject.GetComponent<MovingPlatform>()){
+			player.transform.parent= null;
+
 		}
 			
 	}

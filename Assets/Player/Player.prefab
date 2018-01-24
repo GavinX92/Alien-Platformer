@@ -88,7 +88,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1100475465985506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.74, y: 2.21, z: 0}
+  m_LocalPosition: {x: -12.3, y: 1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4986028458438962}
@@ -322,6 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3499f1d596c7a4eb08dd79d69807a1c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableUpArrowJump: 0
 --- !u!114 &114657897047000148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -362,7 +363,7 @@ MonoBehaviour:
   walkSpeed: 2
   maxRunSpeed: 3
   runAnimationSpeed: 1.2
-  jumpForce: 5
+  jumpForce: 6
   canWalkWhileJumping: 1
   reducedWalkSpeedWhileJumping: 0
   jumpingWalkSpeed: 1

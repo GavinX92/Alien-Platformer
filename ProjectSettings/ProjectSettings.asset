@@ -6,7 +6,7 @@ PlayerSettings:
   serializedVersion: 12
   productGUID: 80a337aea5d3146c09edb244f159f83c
   AndroidProfiler: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -140,7 +140,8 @@ PlayerSettings:
   useHDRDisplay: 0
   targetPixelDensity: 0
   resolutionScalingMode: 0
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.GavinClarkson.AlienPatformer
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16

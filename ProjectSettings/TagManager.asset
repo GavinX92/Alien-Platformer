@@ -17,7 +17,7 @@ TagManager:
   - Enemy
   - Items
   - Player Detecter
-  - 
+  - Enemy Detector
   - 
   - 
   - 
@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3609533453
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 1558667311
     locked: 0

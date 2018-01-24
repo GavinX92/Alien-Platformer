@@ -7,12 +7,14 @@ public class Enemy : MonoBehaviour {
 	public float speed =0.3f;
 
 	private bool isDead = false;
+	private bool isMoving =true;
 	private int xDir;
 	private SpriteRenderer spriteRenderer;
 	private Animator animator;
 	private AudioSource audioSource;
 	private Vector2 startPosition;
 
+	private Camera myCamera;
 	// Use this for initialization
 	void Start () {
 
@@ -20,17 +22,50 @@ public class Enemy : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 		audioSource = GetComponent<AudioSource> ();
 		audioSource.volume = MusicPlayer.GetSoundFXvolume ();
+		GameObject myCameraObj = GameObject.Find ("Player Camera");
+		if(myCameraObj)
+		{
+			myCamera = myCameraObj.GetComponent<Camera> ();
+		}
 		startPosition = transform.position;
 		xDir = -1;
+
+		if (myCamera) {
+
+			Vector3 viewPos = myCamera.WorldToViewportPoint(transform.position);
+
+			if (viewPos.x < 0 || viewPos.x > 1 ||
+				viewPos.y < 0 || viewPos.y > 1) {
+
+				isMoving = false;
+			}
+
+		}
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		gameObject.transform.rotation = Quaternion.identity;
-		if (!isDead) {
+		if (isMoving && !isDead) {
 			Move ();
 		}
+
+
+		if (myCamera && !isMoving) {
+
+			Vector3 viewPos = myCamera.WorldToViewportPoint(transform.position);
+		
+			if (viewPos.x >= 0 && viewPos.x <= 1 &&
+				viewPos.y >= 0 && viewPos.y <= 1) {
+
+				isMoving= true;
+			}
+		}
 	}
+
+
+
 	public void OnCollisionEnter2D(Collision2D collision) {
 
 		if (collision.collider.gameObject.GetComponent<Enemy> ()) {

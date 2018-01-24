@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 95969951353892394}
   - component: {fileID: 114531953551622464}
   - component: {fileID: 114885998104152862}
+  - component: {fileID: 114908417170831274}
   m_Layer: 0
   m_Name: Coin Brick Box
   m_TagString: Untagged
@@ -75,7 +76,7 @@ GameObject:
   - component: {fileID: 4444586529940102}
   - component: {fileID: 61079350151941452}
   - component: {fileID: 114631263304180694}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Box Enemy Bouncer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,10 +283,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1665951083633258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f37123a34ed74b8b9e361578f3c20a1, type: 3}
+  m_Script: {fileID: 11500000, guid: f723dbd828b25481a841ba27014fcce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfCoins: 1
+  numberOfHits: 1
 --- !u!114 &114631263304180694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -306,6 +307,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b9432aa6dae14930a9f0ae21b62bea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114908417170831274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1665951083633258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3abb80ef583414929ab394adeb5aafbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212049242760681716

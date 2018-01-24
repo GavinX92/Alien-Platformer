@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4150833733827750}
   - component: {fileID: 61568605569227248}
   - component: {fileID: 114800877152087402}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Change Direction (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4651002248404424}
   - component: {fileID: 61711446694678124}
   - component: {fileID: 114357487494850698}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Change Direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1226492488642736}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.9, y: -2.51, z: 0}
+  m_LocalPosition: {x: 62.4, y: 0.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4354811133697046}
@@ -178,7 +178,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1156726673850050}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -195,7 +195,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1521923936397284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.03, y: -2.46, z: 0}
+  m_LocalPosition: {x: 53.5, y: -2.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4354811133697046}
@@ -208,7 +208,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054930465022540}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.187084, y: -2.6, z: 0}
+  m_LocalPosition: {x: 56.688, y: -2.39, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children:
   - {fileID: 4202981248088272}
@@ -525,8 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41c266e379044e5da54c2db6b4db8ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
-  isAlive: 1
+  speed: 0.7
 --- !u!114 &114276050068189422
 MonoBehaviour:
   m_ObjectHideFlags: 1

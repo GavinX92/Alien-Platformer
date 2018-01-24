@@ -26,8 +26,8 @@ public class PlayerHealth : MonoBehaviour {
 		audioSource = GetComponent<AudioSource> ();
 		audioSource.volume = MusicPlayer.GetSoundFXvolume ();
 
-	   currentHealth=2;
-		UpdateHeartImages ();
+	  
+
 	}
 	
 
