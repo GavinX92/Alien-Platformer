@@ -11,10 +11,12 @@ public class PlayerControler : MonoBehaviour {
 
 	private bool isAcceptingInput=true;
 	private Player player;
+
 	// Use this for initialization
 	void Start () {
 		
 		player = gameObject.GetComponent<Player> ();
+
 		//to do: require player script.
 	}
 	
@@ -36,8 +38,15 @@ public class PlayerControler : MonoBehaviour {
 
 		}
 
-		if (CrossPlatformInputManager.GetButtonDown ("Jump")) {
+		if (Input.GetKeyDown (KeyCode.UpArrow)) {
+
 			player.Jump ();
+		}
+			
+
+		if (CrossPlatformInputManager.GetButtonDown ("Jump")) {
+			//player.Jump ();
+			player.UseEquipedItem();
 		}
 
 //		if (Input.GetKey (KeyCode.RightArrow) ){//|| Input.GetAxis("Left Joystick")>0) {

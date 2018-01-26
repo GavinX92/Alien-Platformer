@@ -37,8 +37,8 @@ public class PlayerRespawner : MonoBehaviour {
 	}
 
 
-	public void SetPlayerRespawnPoint(PlayerRespawnPoint playerRespawnPoint)
-		{
+	public void SetPlayerRespawnPoint(PlayerRespawnPoint playerRespawnPoint){
+//		Debug.Log ("set player respawn point");
 			this.playerRespawnPoint = playerRespawnPoint;
 	
 		}

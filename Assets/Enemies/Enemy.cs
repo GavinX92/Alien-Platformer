@@ -7,18 +7,22 @@ public class Enemy : MonoBehaviour {
 	public float speed =0.3f;
 
 	private bool isDead = false;
+	private bool isFrozen=false;
 	private bool isMoving =true;
 	private int xDir;
-	private SpriteRenderer spriteRenderer;
+	private int yDir;
+
 	private Animator animator;
 	private AudioSource audioSource;
 	private Vector2 startPosition;
+	private Vector3 rotation;
+
 
 	private Camera myCamera;
 	// Use this for initialization
 	void Start () {
 
-		spriteRenderer = GetComponentInChildren<SpriteRenderer> ();
+	
 		animator = GetComponent<Animator> ();
 		audioSource = GetComponent<AudioSource> ();
 		audioSource.volume = MusicPlayer.GetSoundFXvolume ();
@@ -29,13 +33,13 @@ public class Enemy : MonoBehaviour {
 		}
 		startPosition = transform.position;
 		xDir = -1;
-
+		rotation = new Vector3 (0,0,0);
 		if (myCamera) {
 
 			Vector3 viewPos = myCamera.WorldToViewportPoint(transform.position);
 
-			if (viewPos.x < 0 || viewPos.x > 1 ||
-				viewPos.y < 0 || viewPos.y > 1) {
+			if (viewPos.x < 0 || viewPos.x > 1.2 ||
+				viewPos.y < 0 || viewPos.y > 1.2) {
 
 				isMoving = false;
 			}
@@ -43,11 +47,13 @@ public class Enemy : MonoBehaviour {
 		}
 
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		gameObject.transform.rotation = Quaternion.identity;
-		if (isMoving && !isDead) {
+		
+		gameObject.transform.rotation =Quaternion.Euler(rotation);
+
+		if (isMoving && !isDead && !isFrozen) {
 			Move ();
 		}
 
@@ -56,8 +62,8 @@ public class Enemy : MonoBehaviour {
 
 			Vector3 viewPos = myCamera.WorldToViewportPoint(transform.position);
 		
-			if (viewPos.x >= 0 && viewPos.x <= 1 &&
-				viewPos.y >= 0 && viewPos.y <= 1) {
+			if (viewPos.x >= 0 && viewPos.x <= 1.2 &&
+				viewPos.y >= 0 && viewPos.y <= 1.2) {
 
 				isMoving= true;
 			}
@@ -68,7 +74,7 @@ public class Enemy : MonoBehaviour {
 
 	public void OnCollisionEnter2D(Collision2D collision) {
 
-		if (collision.collider.gameObject.GetComponent<Enemy> ()) {
+		if (collision.collider.gameObject.GetComponent<Enemy> () && !isFrozen) {
 			ChangeDirection ();
 		}
 
@@ -82,7 +88,7 @@ public class Enemy : MonoBehaviour {
 		float x = gameObject.transform.position.x;
 		float y = gameObject.transform.position.y;
 		x += xDir * speed * Time.deltaTime;
-
+		y += yDir * speed * Time.deltaTime;
 		gameObject.transform.position = new Vector3 (x, y);	
 	}
 
@@ -91,10 +97,15 @@ public class Enemy : MonoBehaviour {
 		this.xDir = -xDir;
 
 		if (xDir < 0) {
-			spriteRenderer.flipX = false;
+			
+			rotation = new Vector3(0,0,0);
+
+
 		} else {
-			spriteRenderer.flipX = true;
+
+			rotation = new Vector3(0,180,0);
 		}
+	//	transform.Rotate (new Vector3(0,180,0));
 
 	}
 
@@ -107,6 +118,20 @@ public class Enemy : MonoBehaviour {
 		this.SetIsDead (true);
 	}
 
+	public void EnemyFreeze(float freezeDuration)
+	{
+		animator.speed = 0;
+		isFrozen = true;
+		CancelInvoke ("Unfreeze");
+		Invoke ("Unfreeze", freezeDuration);
+	}
+
+	public void Unfreeze()
+	{
+		animator.speed = 1;
+		isFrozen = false;
+
+	}
 
 	public void DestroyEnemy()
 	{
@@ -124,14 +149,35 @@ public class Enemy : MonoBehaviour {
 		return isDead;
 	}
 
+
+	public void SetXdir(int xDir)
+	{
+		this.xDir = xDir;
+
+
+	}
+
+	public void SetYdir(int yDir)
+	{
+		this.yDir = yDir;
+
+
+	}
+
+	public void SetRotation(Vector3 newRotation)
+	{
+		this.rotation = newRotation;
+	}
 	public void RespawnEnemy()
 	{
 		this.SetIsDead (false);//resets snail animator;
 		transform.position = startPosition;
 
+		Unfreeze ();
+
 		// change if enemies ever start out facing right.
 		xDir = -1;
-		spriteRenderer.flipX = false;
+		rotation = new Vector3(0,0,0);
 	}
 
 
@@ -146,5 +192,7 @@ public class Enemy : MonoBehaviour {
 
 
 	}
+
+
 
 }

@@ -18,9 +18,9 @@ TagManager:
   - Items
   - Player Detecter
   - Enemy Detector
-  - 
-  - 
-  - 
+  - Floor Detector
+  - Floor
+  - Player Bullet
   - 
   - 
   - 

@@ -30,7 +30,7 @@ public class MovingPlatform : MonoBehaviour {
 
 	public void SetNextPoint()
 	{
-		Debug.Log ("Next Point");
+//		Debug.Log ("Next Point");
 		pointIndex++;
 		if (pointIndex > MovePoints.Length - 1) {
 			pointIndex = 1;

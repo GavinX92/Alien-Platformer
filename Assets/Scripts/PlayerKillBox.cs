@@ -6,6 +6,13 @@ public class PlayerKillBox : MonoBehaviour {
 
 	private bool triggered=false;
 
+	private Player player;
+	void Start()
+	{
+		player = Transform.FindObjectOfType<Player> ();
+
+	}
+
 	void OnTriggerEnter2D(Collider2D collider) {
 
 		if (triggered) {
@@ -13,12 +20,10 @@ public class PlayerKillBox : MonoBehaviour {
 		}
 
 		triggered=true;
-		Debug.Log("Triggered player kill box");
+		Debug.Log("Triggered player kill box" +collider.gameObject.name);
+		Debug.Log ("kill box killed player");
+		player.Kill ();
 
-		Player player = collider.gameObject.GetComponent<Player> ();
-		if (player) {
-			player.Kill ();
-		}
 
 		Invoke ("ResetTrigger", 1);
 	}

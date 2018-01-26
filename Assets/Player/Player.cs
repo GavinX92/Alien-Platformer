@@ -23,10 +23,15 @@ public class Player : MonoBehaviour {
 	private Rigidbody2D myRigidbody;
 	private GameObject body;
 	private Animator animator;
-	private SpriteRenderer spriteRenderer;
+	private Vector3 rotation;
+	//private SpriteRenderer spriteRenderer;
 	private PlayerSoundControler playerSoundControler;
 	private PlayerHealth playerHealth;
 
+	private enum EquippableItem{RaygunItem, UmbrellaItem,SwordItem};
+	private EquippableItem equipedItem=EquippableItem.UmbrellaItem;
+	private RayGun raygun;
+	private Umbrella umbrella;
 
 	// Use this for initialization
 	void Start () {
@@ -38,24 +43,39 @@ public class Player : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 		if (!animator) {Debug.LogError ("Can't find animator");}
 
-		 spriteRenderer =	body.GetComponent<SpriteRenderer> ();
-		if (!spriteRenderer) {Debug.LogError ("Can't find body's spriteRenderer");}
+//		 spriteRenderer =	body.GetComponent<SpriteRenderer> ();
+//		if (!spriteRenderer) {Debug.LogError ("Can't find body's spriteRenderer");}
 
 		playerSoundControler = GetComponent<PlayerSoundControler> ();
 		if (!playerSoundControler) {Debug.LogError ("Can't find player sound controler");}
 
 		playerHealth = Transform.FindObjectOfType<PlayerHealth> ();
+
+		raygun = GetComponentInChildren<RayGun> ();
+		umbrella = GetComponentInChildren<Umbrella> ();
+
+		rotation = new Vector3 (0,0,0);
 	}
 
 	
 	// Update is called once per frame
 	void Update () {
-		gameObject.transform.rotation = Quaternion.identity;
+		gameObject.transform.rotation =Quaternion.Euler(rotation);
 
 		this.HandleAnimationState ();
 	
 		//possibly set to true by funtion call from playerControler script.
 		playWalkAnimation = false;
+
+
+		//TO DO: Move to SetEquipedItem
+		if (equipedItem == EquippableItem.UmbrellaItem && !umbrella.striking &&
+			myRigidbody.velocity.y<-0.5f) {
+			myRigidbody.gravityScale = 0.1f;
+
+		} else {
+			myRigidbody.gravityScale = 1;
+		}
 	}
 
 
@@ -90,7 +110,7 @@ public class Player : MonoBehaviour {
 			return;
 		}
 
-			spriteRenderer.flipX = false;
+		rotation = new Vector3 (0,0,0);
 			playWalkAnimation = true;
 
 		float speedToAdd = CalculateSpeedToAdd ();;
@@ -106,7 +126,7 @@ public class Player : MonoBehaviour {
 		if (jumping && !canWalkWhileJumping) {
 			return;
 		}
-			spriteRenderer.flipX = true;
+		rotation = new Vector3 (0,180,0);
 			playWalkAnimation = true;
 
 		float speedToAdd = CalculateSpeedToAdd ();;
@@ -161,6 +181,25 @@ public class Player : MonoBehaviour {
 		myRigidbody.velocity += Vector2.up * jumpForce;
 	}
 
+
+	public void UseEquipedItem(){
+
+
+		if (equipedItem == EquippableItem.RaygunItem) {
+			if (rotation == new Vector3 (0, 0, 0)) {
+				raygun.Shoot (1);
+			} else {
+				raygun.Shoot (-1);
+
+			}
+		} else if (equipedItem == EquippableItem.UmbrellaItem) {
+
+			umbrella.Strike ();
+		}
+
+	
+	}
+
 	public void Damage()
 	{
 		if (isRecovering) {
@@ -188,9 +227,9 @@ public class Player : MonoBehaviour {
 	private void damageKockback()
 	{
 		 float knockbackForce =-3; 
-		if (spriteRenderer.flipX) {
-			knockbackForce = -knockbackForce;
-		} 
+//		if (spriteRenderer.flipX) {
+//			knockbackForce = -knockbackForce;
+//		} 
 		myRigidbody.velocity = new Vector2 (knockbackForce, 0);
 
 	}

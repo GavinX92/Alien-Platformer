@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114106848378172778}
   - component: {fileID: 68667055161191752}
   - component: {fileID: 68847990217332482}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Stationary Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4192271647280258}
   - component: {fileID: 212633501081549400}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4861738634763158}
   - component: {fileID: 212462829966515066}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4089767433821560}
   - component: {fileID: 212669295513338616}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}

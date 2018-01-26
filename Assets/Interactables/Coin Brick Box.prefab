@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 114531953551622464}
   - component: {fileID: 114885998104152862}
   - component: {fileID: 114908417170831274}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Coin Brick Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1665951083633258}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.13, y: 1.8197784, z: 0}
+  m_LocalPosition: {x: 14.19, y: 2.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4078395118062926}
@@ -241,22 +241,22 @@ BoxCollider2D:
   m_GameObject: {fileID: 1665951083633258}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: cda2466ddfae2490689377ccab43ef59, type: 2}
+  m_Material: {fileID: 6200000, guid: afde05484edd749ac81c63e04f8a4783, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.004459381, y: 0.3106655}
+  m_Offset: {x: -0.003235817, y: -0.0026243925}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.7, y: 0.7}
+    newSize: {x: 0.7, y: 0.7}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.50616264, y: 0.080705404}
+  m_Size: {x: 0.6451206, y: 0.6799028}
   m_EdgeRadius: 0
 --- !u!95 &95969951353892394
 Animator:
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f723dbd828b25481a841ba27014fcce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfHits: 1
+  numberOfHits: 3
 --- !u!114 &114631263304180694
 MonoBehaviour:
   m_ObjectHideFlags: 1
