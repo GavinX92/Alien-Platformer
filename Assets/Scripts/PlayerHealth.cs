@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour {
 
 	private AudioSource audioSource;
 
+	private Player player;
 	// Use this for initialization
 	void Start () {
 		
@@ -26,6 +27,7 @@ public class PlayerHealth : MonoBehaviour {
 		audioSource = GetComponent<AudioSource> ();
 		audioSource.volume = MusicPlayer.GetSoundFXvolume ();
 
+		player = Transform.FindObjectOfType<Player> ();
 	  
 
 	}
@@ -47,6 +49,7 @@ public class PlayerHealth : MonoBehaviour {
 		UpdateHeartImages ();
 
 		CheckForDeath ();
+		player.SetEqupiedItem (Player.EquippableItem.NoItem);
 
 	}
 
@@ -81,6 +84,7 @@ public class PlayerHealth : MonoBehaviour {
 		if (currentHealth == 0) {
 			Debug.Log ("Player Dead");
 			playerLives.LoseLife ();
+			player.SetEqupiedItem (Player.EquippableItem.NoItem);
 
 		}
 

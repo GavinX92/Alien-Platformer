@@ -12,6 +12,8 @@ public class PlayerControler : MonoBehaviour {
 	private bool isAcceptingInput=true;
 	private Player player;
 
+	private bool actionButtonDown=false;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -28,7 +30,7 @@ public class PlayerControler : MonoBehaviour {
 			return;
 		}
 	
-//		print (CrossPlatformInputManager.GetAxis ("Horizontal").ToString ());
+
 		if (CrossPlatformInputManager.GetAxis ("Horizontal") < 0) {
 			player.MoveLeft ();
 		}
@@ -37,43 +39,25 @@ public class PlayerControler : MonoBehaviour {
 			player.MoveRight();
 
 		}
-
-		if (Input.GetKeyDown (KeyCode.UpArrow)) {
-
-			player.Jump ();
-		}
 			
 
-		if (CrossPlatformInputManager.GetButtonDown ("Jump")) {
-			//player.Jump ();
+		if(CrossPlatformInputManager.GetButtonDown("Action")){
 			player.UseEquipedItem();
+			actionButtonDown = true;
+			print ("action button down = " + actionButtonDown.ToString ());
+		}
+			
+		if(CrossPlatformInputManager.GetButtonUp("Action")){
+			
+			actionButtonDown = false;
+			print ("action button down = " + actionButtonDown.ToString ());
 		}
 
-//		if (Input.GetKey (KeyCode.RightArrow) ){//|| Input.GetAxis("Left Joystick")>0) {
-//
-//			player.MoveRight ();
-//	} else if (Input.GetKey (KeyCode.LeftArrow) ){//|| Input.GetAxis("Left Joystick")<0) {
-//
-//			player.MoveLeft ();
-//		} 
-//
-//
-//
-//		if ((Input.GetKeyDown (KeyCode.UpArrow) && !disableUpArrowJump )|| Input.GetKeyDown(KeyCode.Space)){
-//	//|| Input.GetButtonDown("A Button")) {
-//
-//			player.Jump ();
-//
-//		}
-//
-//		if (Input.GetKeyDown(KeyCode.Z)){//||Input.GetButtonDown ("X Button")) {
-//			player.StartRunning();
-//		}
-//
-//		if (Input.GetKeyUp(KeyCode.Z)){//||Input.GetButtonUp ("X Button")) {
-//			player.StopRunning();
-//		}
+		if (CrossPlatformInputManager.GetButtonDown ("Jump")) {
+			player.Jump ();
 
+		}
+				
 
 	}//end of update()
 
@@ -81,6 +65,12 @@ public class PlayerControler : MonoBehaviour {
 	{
 
 		this.isAcceptingInput = isAcceptingInput;
+
+	}
+
+	public bool GetActionButtonDown()
+	{
+		return actionButtonDown;
 
 	}
 }

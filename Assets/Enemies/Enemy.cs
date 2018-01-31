@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
 	public float speed =0.3f;
+	public bool changeDirectionOnEnemyHit=true;
 
 	private bool isDead = false;
 	private bool isFrozen=false;
@@ -74,11 +75,13 @@ public class Enemy : MonoBehaviour {
 
 	public void OnCollisionEnter2D(Collision2D collision) {
 
-		if (collision.collider.gameObject.GetComponent<Enemy> () && !isFrozen) {
+		Enemy enemy = collision.collider.gameObject.GetComponent<Enemy> ();
+
+			if (enemy && changeDirectionOnEnemyHit && !isFrozen ) {
 			ChangeDirection ();
 		}
 
-//		print ("collision");
+
 
 	}
 
@@ -114,7 +117,7 @@ public class Enemy : MonoBehaviour {
 		if (isDead) {
 			return;
 		}
-		print ("Enemy dead");
+		Debug.Log ("Enemy dead");
 		this.SetIsDead (true);
 	}
 
@@ -133,6 +136,8 @@ public class Enemy : MonoBehaviour {
 
 	}
 
+
+
 	public void DestroyEnemy()
 	{
 		gameObject.SetActive(false);
@@ -149,6 +154,11 @@ public class Enemy : MonoBehaviour {
 		return isDead;
 	}
 
+	public bool GetIsFrozen()
+	{
+
+		return isFrozen;
+	}
 
 	public void SetXdir(int xDir)
 	{
@@ -177,6 +187,7 @@ public class Enemy : MonoBehaviour {
 
 		// change if enemies ever start out facing right.
 		xDir = -1;
+		yDir = 0;
 		rotation = new Vector3(0,0,0);
 	}
 

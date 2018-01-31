@@ -66,4 +66,16 @@ public class Snail : MonoBehaviour {
 
 
 	}
+
+
+	public static void ResetSnails()
+	{
+		Snail[] snails = Transform.FindObjectsOfType<Snail> ();
+
+		foreach (Snail snail in snails) {
+
+			//snail.ChangeDirection (DIRECTION.Left);
+		}
+
+	}
 }

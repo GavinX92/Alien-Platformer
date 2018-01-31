@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
 
+	public enum EquippableItem{NoItem,RaygunItem, UmbrellaItem,SwordItem};
+
 	public float walkSpeed=2; 
 	public float maxRunSpeed=4;
 	public float runAnimationSpeed = 1.5f;
@@ -21,15 +23,13 @@ public class Player : MonoBehaviour {
 	private bool jumping=false;
 	private bool running =false;
 	private Rigidbody2D myRigidbody;
+	private SpriteRenderer spriteRenderer;
 	private GameObject body;
 	private Animator animator;
 	private Vector3 rotation;
-	//private SpriteRenderer spriteRenderer;
 	private PlayerSoundControler playerSoundControler;
 	private PlayerHealth playerHealth;
-
-	private enum EquippableItem{RaygunItem, UmbrellaItem,SwordItem};
-	private EquippableItem equipedItem=EquippableItem.UmbrellaItem;
+	private EquippableItem equipedItem;
 	private RayGun raygun;
 	private Umbrella umbrella;
 
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 		if (!animator) {Debug.LogError ("Can't find animator");}
 
-//		 spriteRenderer =	body.GetComponent<SpriteRenderer> ();
+		 spriteRenderer =	body.GetComponent<SpriteRenderer> ();
 //		if (!spriteRenderer) {Debug.LogError ("Can't find body's spriteRenderer");}
 
 		playerSoundControler = GetComponent<PlayerSoundControler> ();
@@ -55,6 +55,8 @@ public class Player : MonoBehaviour {
 		umbrella = GetComponentInChildren<Umbrella> ();
 
 		rotation = new Vector3 (0,0,0);
+
+		this.SetEqupiedItem (EquippableItem.NoItem);
 	}
 
 	
@@ -68,14 +70,30 @@ public class Player : MonoBehaviour {
 		playWalkAnimation = false;
 
 
-		//TO DO: Move to SetEquipedItem
-		if (equipedItem == EquippableItem.UmbrellaItem && !umbrella.striking &&
-			myRigidbody.velocity.y<-0.5f) {
-			myRigidbody.gravityScale = 0.1f;
+
+		if (equipedItem == EquippableItem.UmbrellaItem && umbrella.GetIsOpen() &&
+			myRigidbody.velocity.y<-0.3) {
+			myRigidbody.gravityScale = umbrella.reducedGravity;
 
 		} else {
-			myRigidbody.gravityScale = 1;
+			myRigidbody.gravityScale =1;
 		}
+	}
+
+
+
+	private void ToggleVisibility()
+	{
+
+		Color newColor;
+		Color currentColor = spriteRenderer.color;
+		if (currentColor.a > 0) {
+			newColor = new Color ( 255,  255,  255, 0);
+		} else {
+			newColor = new Color ( 255,  255,  255, 255);
+		}
+
+		spriteRenderer.color = newColor;
 	}
 
 
@@ -106,17 +124,18 @@ public class Player : MonoBehaviour {
 	//called in player controler update
 	public void MoveRight()
 	{
+		
 		if (jumping && !canWalkWhileJumping) {
 			return;
 		}
 
 		rotation = new Vector3 (0,0,0);
-			playWalkAnimation = true;
+		playWalkAnimation = true;
 
-		float speedToAdd = CalculateSpeedToAdd ();;
 
 		float y = myRigidbody.velocity.y;
-		myRigidbody.velocity = new Vector2(speedToAdd,y);
+		float x=walkSpeed;
+		myRigidbody.velocity = new Vector2(x,y);
 
 	}
 
@@ -194,7 +213,7 @@ public class Player : MonoBehaviour {
 			}
 		} else if (equipedItem == EquippableItem.UmbrellaItem) {
 
-			umbrella.Strike ();
+
 		}
 
 	
@@ -211,11 +230,55 @@ public class Player : MonoBehaviour {
 		playerHealth.TakeDamage ();
 		isRecovering = true;
 		playerSoundControler.PlayHurtSound ();
-		damageKockback ();
-		//To Do: Slow movement while recovering.
-		animator.SetBool ("isRecovering", true);
+		myRigidbody.velocity = new Vector2 (0, 0);
+		//damageKockback ();
+		InvokeRepeating ("ToggleVisibility", 0, 0.1f);
 		Invoke ("EndRecovery", recoverySpeed);
 
+		this.SetEqupiedItem (EquippableItem.NoItem);
+	}
+
+	public void SetEqupiedItem(EquippableItem equipedItem)
+	{
+
+		this.equipedItem = equipedItem;
+
+		if (equipedItem == EquippableItem.RaygunItem) {
+			raygun.Activate ();
+			umbrella.Deactivate ();
+		
+
+		} else if (equipedItem == EquippableItem.UmbrellaItem) {
+			umbrella.Activate ();
+			raygun.Deactivate ();
+			
+		} else if (equipedItem == EquippableItem.SwordItem) {
+			
+
+		}  
+
+
+		if (equipedItem == EquippableItem.NoItem) {
+
+			raygun.Deactivate ();
+			umbrella.Deactivate ();
+			animator.SetBool ("isEquiped", false);
+		} else {
+			animator.SetBool ("isEquiped", true);
+		}
+		
+//		if (equipedItem == EquippableItem.RaygunItem) {
+//
+//
+//		} else if (equipedItem == EquippableItem.UmbrellaItem) {
+//
+//
+//		} else if(equipedItem == EquippableItem.SwordItem) {
+//
+//
+//		}
+
+			
 	}
 
 	public void Kill()
@@ -226,10 +289,16 @@ public class Player : MonoBehaviour {
 
 	private void damageKockback()
 	{
-		 float knockbackForce =-3; 
-//		if (spriteRenderer.flipX) {
-//			knockbackForce = -knockbackForce;
-//		} 
+		float knockbackForce;
+
+		if (rotation == new Vector3 (0, 0, 0)) {
+			knockbackForce=-3; 
+
+		} else {
+			knockbackForce=3; 
+
+		}
+			
 		myRigidbody.velocity = new Vector2 (knockbackForce, 0);
 
 	}
@@ -237,7 +306,9 @@ public class Player : MonoBehaviour {
 	private void EndRecovery()
 	{
 		isRecovering = false;
-		animator.SetBool ("isRecovering", false);
+		CancelInvoke ("ToggleVisibility");
+		spriteRenderer.color  = new Color ( 255,  255,  255, 255);
+
 	}
 
 	public void setJumping(bool jumping)

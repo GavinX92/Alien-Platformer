@@ -572,6 +572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.5
+  changeDirectionOnEnemyHit: 1
 --- !u!212 &212998758074060458
 SpriteRenderer:
   m_ObjectHideFlags: 1

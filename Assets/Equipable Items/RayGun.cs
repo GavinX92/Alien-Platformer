@@ -15,11 +15,17 @@ public class RayGun : MonoBehaviour {
 		spriteRenderer = GetComponent<SpriteRenderer> ();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	public void Activate()
+	{
+
+		spriteRenderer.enabled = true;
 	}
 
+	public void Deactivate()
+	{
+
+		spriteRenderer.enabled = false;
+	}
 
 	public void Shoot(int xDir)
 	{
@@ -27,7 +33,7 @@ public class RayGun : MonoBehaviour {
 		GameObject bullet =	Instantiate (bulletPrefab,this.transform.position, Quaternion.identity) as GameObject;
 		bullet.GetComponent<Bullet> ().SetXdir (xDir);
 
-		Invoke ("HideRaygun", 0.3f);
+		//Invoke ("HideRaygun", 0.3f);
 
 
 	}
